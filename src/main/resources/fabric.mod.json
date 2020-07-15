@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "party.lemons.ass.Ass"
+    ],
+    "client": [
+      "party.lemons.ass.AssClient"
     ]
   },
   "mixins": [

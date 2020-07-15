@@ -2,10 +2,12 @@ package party.lemons.ass.blockentity;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ArrayUtils;
@@ -16,7 +18,7 @@ import party.lemons.ass.blockentity.worker.Worker;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public abstract class AbstractMachineBlockEntity extends BlockEntity implements Tickable, Inventory, SidedInventory, Upgradeable, Machine
+public abstract class AbstractMachineBlockEntity extends BlockEntity implements Tickable, Inventory, SidedInventory, Upgradeable, Machine, NamedScreenHandlerFactory
 {
 	protected MachineTier machineTier = MachineTier.BASE;
 	protected Worker worker;
@@ -190,7 +192,6 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 	{
 		return true;
 	}
-
 
 	@Override
 	public void upgrade(MachineTier tier)

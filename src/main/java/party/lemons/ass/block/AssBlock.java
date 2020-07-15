@@ -1,4 +1,4 @@
-package party.lemons.ass;
+package party.lemons.ass.block;
 
 import net.minecraft.block.Block;
 import party.lemons.ass.util.registry.BlockWithItem;
