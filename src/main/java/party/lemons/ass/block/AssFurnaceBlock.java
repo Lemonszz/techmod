@@ -29,16 +29,9 @@ public abstract class AssFurnaceBlock extends HorizontalBlock implements BlockEn
 	}
 
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
-		} else {
-			System.out.println(getSide(state, hit.getSide()));
-			this.openScreen(world, pos, player);
-			return ActionResult.CONSUME;
-		}
+		player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+		return ActionResult.SUCCESS;
 	}
-
-	protected abstract void openScreen(World world, BlockPos pos, PlayerEntity player);
 
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {

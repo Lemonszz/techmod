@@ -9,7 +9,7 @@ import party.lemons.ass.blockentity.FueledFurnaceBlockEntity;
 
 public class FueledFurnaceWorker extends FurnaceWorker<FueledFurnaceBlockEntity>
 {
-	private float fuelTime = 0;
+	public float fuelTime = 0;
 
 	public FueledFurnaceWorker(FueledFurnaceBlockEntity machine, RecipeType<? extends AbstractCookingRecipe> recipeType)
 	{

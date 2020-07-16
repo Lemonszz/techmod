@@ -1,6 +1,7 @@
 package party.lemons.ass.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.FurnaceBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.Lazy;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -28,12 +30,6 @@ public class FueledFurnaceBlock extends AssFurnaceBlock
 
 		this.recipeType = recipeType;
 		this.type = type;
-	}
-
-	@Override
-	protected void openScreen(World world, BlockPos pos, PlayerEntity player)
-	{
-
 	}
 
 	@Nullable

@@ -3,6 +3,7 @@ package party.lemons.ass.blockentity.worker;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -24,9 +25,9 @@ public abstract class FurnaceWorker<T extends AbstractMachineBlockEntity> extend
 	protected final T machine;
 	private final World world;
 
-	protected float burnTime;
-	private float cookTime;
-	private float cookTimeTotal;
+	public float burnTime;
+	public float cookTime;
+	public float cookTimeTotal;
 	private final Object2IntOpenHashMap<Identifier> recipesUsed;
 
 	public FurnaceWorker(T machine, RecipeType<? extends AbstractCookingRecipe> recipeType)
@@ -69,6 +70,7 @@ public abstract class FurnaceWorker<T extends AbstractMachineBlockEntity> extend
 				if(recipe.isPresent() && !isBurning() && canAcceptRecipeOutput(recipe.get()))
 				{
 					takeFuel();
+					cookTimeTotal = getCookTime();
 				}
 
 				if(recipe.isPresent() && isBurning() && canAcceptRecipeOutput(recipe.get()))
@@ -78,7 +80,6 @@ public abstract class FurnaceWorker<T extends AbstractMachineBlockEntity> extend
 					{
 						cookTime = 0;
 						cookTimeTotal = getCookTime();
-
 						craftRecipe(recipe.get());
 						hasChanged = true;
 					}

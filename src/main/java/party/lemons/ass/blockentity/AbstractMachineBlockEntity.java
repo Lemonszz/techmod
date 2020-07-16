@@ -1,5 +1,6 @@
 package party.lemons.ass.blockentity;
 
+import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -8,6 +9,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ArrayUtils;
@@ -18,12 +20,13 @@ import party.lemons.ass.blockentity.worker.Worker;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public abstract class AbstractMachineBlockEntity extends BlockEntity implements Tickable, Inventory, SidedInventory, Upgradeable, Machine, NamedScreenHandlerFactory
+public abstract class AbstractMachineBlockEntity extends BlockEntity implements PropertyDelegateHolder, Tickable, Inventory, SidedInventory, Upgradeable, Machine, NamedScreenHandlerFactory
 {
 	protected MachineTier machineTier = MachineTier.BASE;
 	protected Worker worker;
 	protected SlotIO insertSlotIO;
 	protected SlotIO extractSlotIO;
+	protected AssPropertyDelegate propertyDelegate;
 	private boolean firstTick = true;
 
 	public AbstractMachineBlockEntity(BlockEntityType<?> type)
@@ -31,6 +34,7 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 		super(type);
 		this.insertSlotIO = createInsertSlotIO();
 		this.extractSlotIO = createExtractSlotIO();
+		propertyDelegate = new AssPropertyDelegate();
 	}
 
 	public void init()
@@ -197,5 +201,11 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 	public void upgrade(MachineTier tier)
 	{
 		machineTier = tier;
+	}
+
+	@Override
+	public PropertyDelegate getPropertyDelegate()
+	{
+		return propertyDelegate;
 	}
 }

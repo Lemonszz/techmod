@@ -8,7 +8,10 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import party.lemons.ass.blockentity.screen.FueledFurnaceGuiDescription;
 import party.lemons.ass.blockentity.util.BlockSide;
 import party.lemons.ass.blockentity.util.InventorySource;
 import party.lemons.ass.blockentity.util.SlotIO;
@@ -27,6 +30,17 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 		super(type);
 		this.recipeType = recipeType;
 		this.inventory = new SimpleInventory(3);
+	}
+
+	@Override
+	public void init()
+	{
+		super.init();
+
+		propertyDelegate.addProperty(0, ()->(int) ((FueledFurnaceWorker)worker).burnTime, (v)->((FueledFurnaceWorker)worker).burnTime = v);
+		propertyDelegate.addProperty(1, ()->(int) ((FueledFurnaceWorker)worker).fuelTime, (v)->((FueledFurnaceWorker)worker).fuelTime = v);
+		propertyDelegate.addProperty(2, ()->(int) ((FueledFurnaceWorker)worker).cookTime, (v)->((FueledFurnaceWorker)worker).cookTime = v);
+		propertyDelegate.addProperty(3, ()->(int) ((FueledFurnaceWorker)worker).cookTimeTotal, (v)->((FueledFurnaceWorker)worker).cookTimeTotal = v);
 	}
 
 	@Override
@@ -59,13 +73,13 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 	@Override
 	public Text getDisplayName()
 	{
-		return null;
+		return new TranslatableText("gui." + getCachedState().getBlock().getTranslationKey());
 	}
 
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)
 	{
-		return null;
+		return new FueledFurnaceGuiDescription(syncId, inv, ScreenHandlerContext.create(world, pos));
 	}
 }
