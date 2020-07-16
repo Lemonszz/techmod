@@ -7,23 +7,44 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
-import party.lemons.ass.util.registry.BlockWithItem;
 
-public class DirectionalBlock extends Block implements BlockWithItem
+public class DirectionalBlock extends AssBlock
 {
-	public static DirectionProperty FACING = Properties.FACING;
+	public enum PlacementMode{
+		BLOCK_FACE,
+		BLOCK_FACE_OPPOSITE,
+		PLAYER_FACE,
+		PLAYER_FACE_OPPOSITE
+	}
 
-	public DirectionalBlock(Settings settings)
+	public static DirectionProperty FACING = Properties.FACING;
+	private final PlacementMode placementMode;
+
+	public DirectionalBlock(Settings settings, PlacementMode placementMode)
 	{
 		super(settings);
+		this.placementMode = placementMode;
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
 	}
 
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx)
 	{
-		return this.getDefaultState().with(FACING, ctx.getSide().getOpposite());
+		switch(placementMode)
+		{
+			case BLOCK_FACE:
+				return getDefaultState().with(FACING, ctx.getSide());
+			case BLOCK_FACE_OPPOSITE:
+				return getDefaultState().with(FACING, ctx.getSide().getOpposite());
+			case PLAYER_FACE:
+				return getDefaultState().with(FACING, ctx.getPlayerLookDirection());
+			case PLAYER_FACE_OPPOSITE:
+				return getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
+		}
+		return getDefaultState();
 	}
 
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
 	{
 		builder.add(FACING);

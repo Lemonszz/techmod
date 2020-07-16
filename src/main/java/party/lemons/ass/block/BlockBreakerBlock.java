@@ -29,12 +29,6 @@ public class BlockBreakerBlock extends HorizontalBlock implements BlockEntityPro
 		return new BlockBreakerBlockEntity();
 	}
 
-	@Nullable
-	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory)blockEntity : null;
-	}
-
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
 	{

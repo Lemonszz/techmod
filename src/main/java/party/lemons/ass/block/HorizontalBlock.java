@@ -12,7 +12,7 @@ import net.minecraft.util.math.Direction;
 import party.lemons.ass.blockentity.util.BlockSide;
 import party.lemons.ass.util.registry.BlockWithItem;
 
-public class HorizontalBlock extends Block implements BlockWithItem
+public class HorizontalBlock extends AssBlock
 {
 	public static DirectionProperty FACING = AbstractFurnaceBlock.FACING;
 

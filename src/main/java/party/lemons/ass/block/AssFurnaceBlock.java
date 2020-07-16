@@ -58,12 +58,6 @@ public abstract class AssFurnaceBlock extends HorizontalBlock implements BlockEn
 		return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
 	}
 
-	@Nullable
-	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory)blockEntity : null;
-	}
-
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
 	{
 		super.appendProperties(builder);

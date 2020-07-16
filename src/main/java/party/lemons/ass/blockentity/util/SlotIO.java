@@ -89,6 +89,7 @@ public class SlotIO
 
 		public SideBuilder all(Inventory inventory)
 		{
+			//TODO: this crashes?
 			for(int i = 0; i < inventory.size(); i++)
 			{
 				slot(i);

@@ -30,9 +30,8 @@ public class SpoutBlock extends DirectionalBlock implements BlockEntityProvider
 
 	public SpoutBlock(Settings settings)
 	{
-		super(settings);
+		super(settings, PlacementMode.BLOCK_FACE_OPPOSITE);
 		this.setDefaultState(this.stateManager.getDefaultState().with(ENABLED, true));
-
 	}
 
 	private VoxelShape getShape(BlockState state)
