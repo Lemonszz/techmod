@@ -1,8 +1,6 @@
 package party.lemons.ass.blockentity.worker;
 
-import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.StairsBlock;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemPlacementContext;
@@ -129,12 +127,17 @@ public class BlockPlacerWorker extends Worker<BlockPlacerBlockEntity>
 	@Override
 	public CompoundTag toTag()
 	{
-		return null;
+		CompoundTag tag = new CompoundTag();
+		tag.putFloat("PlaceTime", placeTime);
+		tag.putFloat("PlaceTimeMax", placeTimeMax);
+
+		return tag;
 	}
 
 	@Override
 	public void fromTag(CompoundTag tag)
 	{
-
+		placeTime = tag.getFloat("PlaceTime");
+		placeTimeMax = tag.getFloat("PlaceTimeMax");
 	}
 }

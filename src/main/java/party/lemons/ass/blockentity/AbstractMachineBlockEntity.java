@@ -1,23 +1,34 @@
 package party.lemons.ass.blockentity;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
+import net.fabricmc.fabric.api.util.NbtType;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ArrayUtils;
 import party.lemons.ass.block.HorizontalBlock;
 import party.lemons.ass.blockentity.util.*;
 import party.lemons.ass.blockentity.worker.Worker;
+import party.lemons.ass.util.InventoryUtil;
 
 import javax.annotation.Nullable;
+import java.util.Iterator;
 import java.util.Optional;
 
 public abstract class AbstractMachineBlockEntity extends BlockEntity implements PropertyDelegateHolder, Tickable, Inventory, SidedInventory, Upgradeable, Machine, NamedScreenHandlerFactory
@@ -28,6 +39,7 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 	protected SlotIO extractSlotIO;
 	protected AssPropertyDelegate propertyDelegate;
 	private boolean firstTick = true;
+	private CompoundTag workerTags = null;
 
 	public AbstractMachineBlockEntity(BlockEntityType<?> type)
 	{
@@ -37,9 +49,52 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 		propertyDelegate = new AssPropertyDelegate();
 	}
 
+	public void fromTag(BlockState state, CompoundTag tag) {
+		super.fromTag(state, tag);
+
+		//Tier
+		MachineTier loadTier = MachineTier.fromName(tag.getString("MachineTier"));
+		if(loadTier == null)
+			loadTier = MachineTier.BASE;
+		this.machineTier = loadTier;
+
+		//Inventory
+		if(tag.contains("Inventory") && getInventoryOptional().isPresent())
+		{
+			ListTag list = tag.getList("Inventory", NbtType.COMPOUND);
+			InventoryUtil.readTag(getInventoryOptional().get(), list);
+		}
+
+		//Worker
+		if(tag.contains("Worker"))
+		{
+			workerTags = tag.getCompound("Worker");
+		}
+	}
+
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		super.toTag(tag);
+		tag.putString("MachineTier", machineTier.getName());
+
+		if(getInventoryOptional().isPresent())
+		{
+			tag.put("Inventory", InventoryUtil.toTag(getInventoryOptional().get()));
+		}
+
+		if(worker != null)
+		{
+			tag.put("Worker", worker.toTag());
+		}
+
+		return tag;
+	}
+
 	public void init()
 	{
 		this.worker = createWorker();
+		if(workerTags != null)
+			this.worker.fromTag(workerTags);
 	}
 
 	@Override

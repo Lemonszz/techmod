@@ -116,13 +116,20 @@ public abstract class FurnaceWorker<T extends AbstractMachineBlockEntity> extend
 	@Override
 	public CompoundTag toTag()
 	{
-		return null;
+		CompoundTag tag = new CompoundTag();
+		tag.putFloat("BurnTime", burnTime);
+		tag.putFloat("CookTime", cookTime);
+		tag.putFloat("CookTimeTotal", cookTimeTotal);
+
+		return tag;
 	}
 
 	@Override
 	public void fromTag(CompoundTag tag)
 	{
-
+		burnTime = tag.getFloat("BurnTime");
+		cookTime = tag.getFloat("CookTime");
+		cookTimeTotal = tag.getFloat("CookTimeTotal");
 	}
 
 	protected boolean isBurning()

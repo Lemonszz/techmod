@@ -98,7 +98,7 @@ public abstract class ExperienceOrbEntityMixin extends Entity implements Experie
 			g = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
 		}
 
-		this.setVelocity(this.getVelocity().multiply((double)g, 0.98D, (double)g));
+		this.setVelocity(this.getVelocity().multiply(g, 0.98D, g));
 		if (this.onGround) {
 			this.setVelocity(this.getVelocity().multiply(1.0D, -0.9D, 1.0D));
 		}

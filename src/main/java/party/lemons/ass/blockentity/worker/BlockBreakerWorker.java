@@ -128,14 +128,18 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 	@Override
 	public CompoundTag toTag()
 	{
-		//TODO:
-		return new CompoundTag();
+		CompoundTag tag = new CompoundTag();
+		tag.putFloat("Progress", progress);
+		tag.putFloat("BreakDelta", breakDelta);
+
+		return tag;
 	}
 
 	@Override
 	public void fromTag(CompoundTag tag)
 	{
-		//TODO:
+		progress = tag.getFloat("Progress");
+		breakDelta = tag.getFloat("BreakDelta");
 	}
 
 	public ItemStack getStack()

@@ -1,26 +1,23 @@
 package party.lemons.ass.blockentity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import party.lemons.ass.block.ExperienceTorchBlock;
-import party.lemons.ass.blockentity.util.InventorySource;
 import party.lemons.ass.init.AssBlockEntities;
+import party.lemons.ass.util.InventoryUtil;
 import party.lemons.ass.util.access.ExperienceOrbEntityAccess;
-
-import java.util.Map;
 
 public class ExperienceTorchBlockEntity extends BlockEntity implements Tickable
 {
@@ -76,7 +73,7 @@ public class ExperienceTorchBlockEntity extends BlockEntity implements Tickable
 	public Inventory getAttachedInventory()
 	{
 		BlockPos offset = getPos().offset(getCachedState().get(ExperienceTorchBlock.FACING));
-		return SpoutBlockEntity.getInventoryAt(world, offset);
+		return InventoryUtil.getInventoryAt(world, offset);
 	}
 
 	public void pickup(ExperienceOrbEntity orb)
@@ -119,4 +116,27 @@ public class ExperienceTorchBlockEntity extends BlockEntity implements Tickable
 		}
 	}
 
+	@Override
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		super.toTag(tag);
+
+		tag.putInt("PickupDelay", experiencePickupDelay);
+		tag.putInt("XPLevel", experienceLevel);
+		tag.putInt("XPTotal", totalExperience);
+		tag.putFloat("XPProgress", experienceProgress);
+
+		return tag;
+	}
+
+	@Override
+	public void fromTag(BlockState state, CompoundTag tag)
+	{
+		super.fromTag(state, tag);
+
+		experiencePickupDelay = tag.getInt("PickupDelay");
+		experienceLevel = tag.getInt("XPLevel");
+		totalExperience = tag.getInt("XPTotal");
+		experienceProgress = tag.getFloat("XPProgress");
+	}
 }

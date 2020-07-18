@@ -25,7 +25,6 @@ public class BlockPlacerBlockEntity extends AbstractMachineBlockEntity implement
 {
 	private Inventory inventory;
 
-
 	public BlockPlacerBlockEntity()
 	{
 		super(AssBlockEntities.BLOCK_PLACER);

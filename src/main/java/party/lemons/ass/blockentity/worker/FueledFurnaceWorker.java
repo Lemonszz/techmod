@@ -3,6 +3,7 @@ package party.lemons.ass.blockentity.worker;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.RecipeType;
 import party.lemons.ass.blockentity.FueledFurnaceBlockEntity;
@@ -14,6 +15,22 @@ public class FueledFurnaceWorker extends FurnaceWorker<FueledFurnaceBlockEntity>
 	public FueledFurnaceWorker(FueledFurnaceBlockEntity machine, RecipeType<? extends AbstractCookingRecipe> recipeType)
 	{
 		super(machine, recipeType);
+	}
+
+	@Override
+	public CompoundTag toTag()
+	{
+		CompoundTag tag = super.toTag();
+		tag.putFloat("FuelTime", fuelTime);
+
+		return tag;
+	}
+
+	@Override
+	public void fromTag(CompoundTag tag)
+	{
+		super.fromTag(tag);
+		fuelTime = tag.getFloat("FuelTime");
 	}
 
 	@Override

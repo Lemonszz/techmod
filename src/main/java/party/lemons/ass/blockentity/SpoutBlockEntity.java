@@ -13,12 +13,14 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import party.lemons.ass.block.SpoutBlock;
+import party.lemons.ass.util.InventoryUtil;
 
 import javax.annotation.Nullable;
 import java.util.stream.IntStream;
@@ -46,7 +48,7 @@ public class SpoutBlockEntity extends BlockEntity implements Tickable
 			Direction dir = thisState.get(SpoutBlock.FACING);
 			BlockPos pos = getPos().offset(dir);
 
-			Inventory inv = getInventoryAt(world, pos);
+			Inventory inv = InventoryUtil.getInventoryAt(world, pos);
 			if(inv != null)
 			{
 				Direction extractDir = dir.getOpposite();
@@ -89,6 +91,24 @@ public class SpoutBlockEntity extends BlockEntity implements Tickable
 		return false;
 	}
 
+	@Override
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		super.toTag(tag);
+		tag.putInt("DropTime", dropTime);
+
+		return tag;
+
+	}
+
+	@Override
+	public void fromTag(BlockState state, CompoundTag tag)
+	{
+		super.fromTag(state, tag);
+
+		dropTime = tag.getInt("DropTime");
+	}
+
 	private static boolean canExtract(Inventory inv, ItemStack stack, int slot, Direction facing) {
 		return !(inv instanceof SidedInventory) || ((SidedInventory)inv).canExtract(slot, stack, facing);
 	}
@@ -99,26 +119,5 @@ public class SpoutBlockEntity extends BlockEntity implements Tickable
 
 	private static IntStream getAvailableSlots(Inventory inventory, Direction side) {
 		return inventory instanceof SidedInventory ? IntStream.of(((SidedInventory)inventory).getAvailableSlots(side)) : IntStream.range(0, inventory.size());
-	}
-
-	@Nullable
-	public static Inventory getInventoryAt(World world, BlockPos blockPos)
-	{
-		Inventory inventory = null;
-		BlockState blockState = world.getBlockState(blockPos);
-		Block block = blockState.getBlock();
-		if (block instanceof InventoryProvider) {
-			inventory = ((InventoryProvider)block).getInventory(blockState, world, blockPos);
-		} else if (block.hasBlockEntity()) {
-			BlockEntity blockEntity = world.getBlockEntity(blockPos);
-			if (blockEntity instanceof Inventory) {
-				inventory = (Inventory)blockEntity;
-				if (inventory instanceof ChestBlockEntity && block instanceof ChestBlock) {
-					inventory = ChestBlock.getInventory((ChestBlock)block, blockState, world, blockPos, true);
-				}
-			}
-		}
-
-		return inventory;
 	}
 }

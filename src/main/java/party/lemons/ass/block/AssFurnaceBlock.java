@@ -33,17 +33,6 @@ public abstract class AssFurnaceBlock extends HorizontalBlock implements BlockEn
 		return ActionResult.SUCCESS;
 	}
 
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (!state.isOf(newState.getBlock())) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof AbstractMachineBlockEntity) {
-				ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
-				world.updateComparators(pos, this);
-			}
-			super.onStateReplaced(state, world, pos, newState, moved);
-		}
-	}
-
 	public boolean hasComparatorOutput(BlockState state) {
 		return true;
 	}
