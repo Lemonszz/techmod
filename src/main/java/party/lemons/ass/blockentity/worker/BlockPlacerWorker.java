@@ -1,6 +1,7 @@
 package party.lemons.ass.blockentity.worker;
 
 import net.minecraft.block.BarrelBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
@@ -14,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import party.lemons.ass.block.DirectionalBlock;
+import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.BlockPlacerBlockEntity;
 import party.lemons.ass.util.fakeplayer.FakePlayer;
 
@@ -38,10 +40,19 @@ public class BlockPlacerWorker extends Worker<BlockPlacerBlockEntity>
 		}
 	}
 
+	private boolean isEnabled()
+	{
+		Block bl = machine.getCachedState().getBlock();
+		if(bl instanceof RedstoneToggleable)
+			return ((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos());
+
+		return true;
+	}
+
 	@Override
 	public void update()
 	{
-		if(!Objects.requireNonNull(machine.getWorld()).isClient() && hasBlock())
+		if(!Objects.requireNonNull(machine.getWorld()).isClient() && hasBlock() && isEnabled())
 		{
 			//TODO: power
 			placeTime -= machine.getWorkSpeedMultiplier();

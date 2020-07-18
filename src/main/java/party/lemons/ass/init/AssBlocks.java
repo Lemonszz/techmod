@@ -18,4 +18,5 @@ public class AssBlocks
 	public static final BlockBreakerBlock BLOCK_BREAKER = new BlockBreakerBlock(FabricBlockSettings.of(Material.METAL).strength(1.5F, 1.5F));
 	public static final BlockPlacerBlock BLOCK_PLACER = new BlockPlacerBlock(FabricBlockSettings.of(Material.METAL).strength(1.5F, 1.5F));
 	public static final GatedHopperBlock GATED_HOPPER = new GatedHopperBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().strength(1.5F, 1.5F));
+	public static final ExperienceTorchBlock EXPERIENCE_TORCH = new ExperienceTorchBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().breakInstantly());
 }

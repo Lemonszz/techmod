@@ -9,6 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import party.lemons.ass.block.HorizontalBlock;
+import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.BlockBreakerBlockEntity;
 import party.lemons.ass.util.fakeplayer.FakePlayer;
 
@@ -39,7 +40,7 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 	public void update()
 	{
 		//TODO: power
-		if(!machine.getWorld().isClient && hasBlock())
+		if(!machine.getWorld().isClient && isEnabled() && hasBlock())
 		{
 			BlockState checkState = getBreakingState();
 			BlockPos breakPos = getBreakingPosition();
@@ -78,6 +79,15 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 				breakingState = Blocks.AIR.getDefaultState();
 			}
 		}
+	}
+
+	private boolean isEnabled()
+	{
+		Block bl = machine.getCachedState().getBlock();
+		if(bl instanceof RedstoneToggleable)
+			return ((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos());
+
+		return true;
 	}
 
 	private void updateStateInformation()

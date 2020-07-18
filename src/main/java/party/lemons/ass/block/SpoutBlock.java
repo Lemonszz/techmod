@@ -12,12 +12,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.SpoutBlockEntity;
 import party.lemons.ass.init.AssBlockEntities;
 
 import javax.annotation.Nullable;
 
-public class SpoutBlock extends DirectionalBlock implements BlockEntityProvider
+public class SpoutBlock extends DirectionalBlock implements BlockEntityProvider, RedstoneToggleable
 {
 	public static final BooleanProperty ENABLED = Properties.ENABLED;
 
@@ -95,4 +96,9 @@ public class SpoutBlock extends DirectionalBlock implements BlockEntityProvider
 		builder.add(ENABLED);
 	}
 
+	@Override
+	public boolean isEnabled(BlockState state, World world, BlockPos pos)
+	{
+		return state.get(ENABLED);
+	}
 }

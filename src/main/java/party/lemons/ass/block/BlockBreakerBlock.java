@@ -11,11 +11,12 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.BlockBreakerBlockEntity;
 
 import javax.annotation.Nullable;
 
-public class BlockBreakerBlock extends HorizontalBlock implements BlockEntityProvider
+public class BlockBreakerBlock extends HorizontalBlock implements BlockEntityProvider, RedstoneToggleable
 {
 	public BlockBreakerBlock(Settings settings)
 	{
@@ -34,5 +35,11 @@ public class BlockBreakerBlock extends HorizontalBlock implements BlockEntityPro
 	{
 		player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
 		return ActionResult.SUCCESS;
+	}
+
+	@Override
+	public boolean isEnabled(BlockState state, World world, BlockPos pos)
+	{
+		return !world.isReceivingRedstonePower(pos);
 	}
 }

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ass:block/experience_torch"
+    },
+    "facing=east": {
+      "model": "ass:block/experience_torch",
+      "x": 270,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ass:block/experience_torch",
+      "x":90,
+      "y": 180
+    },
+    "facing=south": {
+      "model": "ass:block/experience_torch",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "ass:block/experience_torch",
+      "x": 180
+    },
+    "facing=west": {
+      "model": "ass:block/experience_torch",
+      "x": 270,
+      "y": 270
+    }
+  }
+}
