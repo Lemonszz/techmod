@@ -3,10 +3,8 @@ package party.lemons.ass.init;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.recipe.RecipeType;
-import party.lemons.ass.blockentity.BlockBreakerBlockEntity;
-import party.lemons.ass.blockentity.BlockPlacerBlockEntity;
-import party.lemons.ass.blockentity.FueledFurnaceBlockEntity;
-import party.lemons.ass.blockentity.SpoutBlockEntity;
+import party.lemons.ass.blockentity.*;
+import party.lemons.ass.util.access.BlockEntityTypeAccess;
 import party.lemons.ass.util.registry.AutoReg;
 
 @AutoReg(registry = "block_entity_type", type = BlockEntityType.class, priority = 101)
@@ -18,6 +16,10 @@ public final class AssBlockEntities
 	public static final BlockEntityType<SpoutBlockEntity> SPOUT = create(BlockEntityType.Builder.create(()->new SpoutBlockEntity(AssBlockEntities.SPOUT), AssBlocks.SPOUT));
 	public static final BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER = create(BlockEntityType.Builder.create(BlockBreakerBlockEntity::new, AssBlocks.BLOCK_BREAKER));
 	public static final BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER = create(BlockEntityType.Builder.create(BlockPlacerBlockEntity::new, AssBlocks.BLOCK_PLACER));
+
+	static {
+		((BlockEntityTypeAccess)BlockEntityType.HOPPER).addSupportedBlock(AssBlocks.GATED_HOPPER);
+	}
 
 	private static <T extends BlockEntity> BlockEntityType<T> create(BlockEntityType.Builder<T> builder) {
 		return builder.build(null);

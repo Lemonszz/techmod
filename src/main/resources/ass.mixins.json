@@ -1,9 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "party.lemons.assmixin",
+  "package": "party.lemons.ass.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "HopperBlockEntityMixin",
+    "BlockEntityTypeMixin"
   ],
   "client": [
   ],

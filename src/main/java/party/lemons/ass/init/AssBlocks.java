@@ -5,10 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Lazy;
-import party.lemons.ass.block.BlockBreakerBlock;
-import party.lemons.ass.block.BlockPlacerBlock;
-import party.lemons.ass.block.FueledFurnaceBlock;
-import party.lemons.ass.block.SpoutBlock;
+import party.lemons.ass.block.*;
 import party.lemons.ass.util.registry.AutoReg;
 
 @AutoReg(registry = "block", type = Block.class)
@@ -20,4 +17,5 @@ public class AssBlocks
 	public static final SpoutBlock SPOUT = new SpoutBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().strength(1.5F, 1.5F));
 	public static final BlockBreakerBlock BLOCK_BREAKER = new BlockBreakerBlock(FabricBlockSettings.of(Material.METAL).strength(1.5F, 1.5F));
 	public static final BlockPlacerBlock BLOCK_PLACER = new BlockPlacerBlock(FabricBlockSettings.of(Material.METAL).strength(1.5F, 1.5F));
+	public static final GatedHopperBlock GATED_HOPPER = new GatedHopperBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().strength(1.5F, 1.5F));
 }
