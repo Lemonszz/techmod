@@ -12,6 +12,9 @@ import party.lemons.ass.block.HorizontalBlock;
 import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.BlockBreakerBlockEntity;
 import party.lemons.ass.util.fakeplayer.FakePlayer;
+import team.reborn.energy.Energy;
+import team.reborn.energy.EnergySide;
+import team.reborn.energy.EnergyStorage;
 
 public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 {
@@ -53,6 +56,8 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 			}
 
 			progress += breakDelta;
+			Energy.of(machine).extract(getEnergyUse());
+
 			machine.getWorld().setBlockBreakingInfo(fakeEntityID, breakPos, (int)(progress * 10F));
 
 			if(progress >= 1)
@@ -84,8 +89,11 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 	private boolean isEnabled()
 	{
 		Block bl = machine.getCachedState().getBlock();
-		if(bl instanceof RedstoneToggleable)
-			return ((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos());
+		if(!((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos()))
+			return false;
+
+		if(((EnergyStorage)machine).getStored(EnergySide.UNKNOWN) < getEnergyUse()) //TODO: sided?
+			return false;
 
 		return true;
 	}
@@ -118,6 +126,11 @@ public class BlockBreakerWorker extends Worker<BlockBreakerBlockEntity>
 		BlockPos pos = machine.getPos().offset(facing);
 
 		return pos;
+	}
+
+	public double getEnergyUse()
+	{
+		return 10 * machine.getPowerUseMultiplier();
 	}
 
 	public BlockState getBreakingState()

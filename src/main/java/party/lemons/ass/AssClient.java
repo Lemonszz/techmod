@@ -13,5 +13,6 @@ public class AssClient implements ClientModInitializer
 		ScreenRegistry.<BlockBreakerGuiDescription, BlockBreakerScreen>register(AssScreens.BLOCK_BREAKER, (g, i, t)->new BlockBreakerScreen(g,i.player, t));
 		ScreenRegistry.<FueledFurnaceGuiDescription, FueledFurnaceScreen>register(AssScreens.FUELED_FURNACE, (g, i, t)->new FueledFurnaceScreen(g,i.player, t));
 		ScreenRegistry.<BlockPlacerGuiDescription, BlockPlacerScreen>register(AssScreens.BLOCK_PLACER, (g, i, t)->new BlockPlacerScreen(g,i.player, t));
+		ScreenRegistry.<FurnaceGeneratorGuiDescription, FurnaceGeneratorScreen>register(AssScreens.FURNACE_GENERATOR, (g, i, t)->new FurnaceGeneratorScreen(g,i.player, t));
 	}
 }

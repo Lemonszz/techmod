@@ -19,7 +19,7 @@ import party.lemons.ass.init.AssBlocks;
 
 import javax.annotation.Nullable;
 
-public class BlockBreakerBlockEntity extends AbstractMachineBlockEntity implements InventorySource
+public class BlockBreakerBlockEntity extends AbstractPoweredMachineBlockEntity implements InventorySource
 {
 	private Inventory inventory;
 

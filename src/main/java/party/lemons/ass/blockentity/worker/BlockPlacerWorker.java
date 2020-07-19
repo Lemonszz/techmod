@@ -16,6 +16,9 @@ import party.lemons.ass.block.DirectionalBlock;
 import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.BlockPlacerBlockEntity;
 import party.lemons.ass.util.fakeplayer.FakePlayer;
+import team.reborn.energy.Energy;
+import team.reborn.energy.EnergySide;
+import team.reborn.energy.EnergyStorage;
 
 import java.util.Objects;
 import java.util.Random;
@@ -41,10 +44,18 @@ public class BlockPlacerWorker extends Worker<BlockPlacerBlockEntity>
 	private boolean isEnabled()
 	{
 		Block bl = machine.getCachedState().getBlock();
-		if(bl instanceof RedstoneToggleable)
-			return ((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos());
+		if(!((RedstoneToggleable)bl).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos()))
+			return false;
+
+		if(((EnergyStorage)machine).getStored(EnergySide.UNKNOWN) < getEnergyUse()) //TODO: sided?
+			return false;
 
 		return true;
+	}
+
+	public double getEnergyUse()
+	{
+		return 70 * machine.getPowerUseMultiplier();
 	}
 
 	@Override
@@ -57,6 +68,7 @@ public class BlockPlacerWorker extends Worker<BlockPlacerBlockEntity>
 
 			if(placeTime <= 0)
 			{
+				Energy.of(machine).extract(getEnergyUse());
 				placeTime = placeTimeMax;
 				placeBlock();
 			}

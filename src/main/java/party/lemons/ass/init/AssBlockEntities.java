@@ -17,6 +17,8 @@ public final class AssBlockEntities
 	public static final BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER = create(BlockEntityType.Builder.create(BlockBreakerBlockEntity::new, AssBlocks.BLOCK_BREAKER));
 	public static final BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER = create(BlockEntityType.Builder.create(BlockPlacerBlockEntity::new, AssBlocks.BLOCK_PLACER));
 	public static final BlockEntityType<ExperienceTorchBlockEntity> EXPERIENCE_TORCH = create(BlockEntityType.Builder.create(ExperienceTorchBlockEntity::new, AssBlocks.EXPERIENCE_TORCH));
+	public static final BlockEntityType<CreativeGeneratorBlockEntity> CREATIVE_GENERATOR = create(BlockEntityType.Builder.create(CreativeGeneratorBlockEntity::new, AssBlocks.CREATIVE_GENERATOR));
+	public static final BlockEntityType<FurnaceGeneratorBlockEntity> FURNACE_GENERATOR = create(BlockEntityType.Builder.create(FurnaceGeneratorBlockEntity::new, AssBlocks.FURNACE_GENERATOR));
 
 	static {
 		((BlockEntityTypeAccess)BlockEntityType.HOPPER).addSupportedBlock(AssBlocks.GATED_HOPPER);

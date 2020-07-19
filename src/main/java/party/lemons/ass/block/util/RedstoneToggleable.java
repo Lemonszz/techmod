@@ -6,5 +6,8 @@ import net.minecraft.world.World;
 
 public interface RedstoneToggleable
 {
-	boolean isEnabled(BlockState state, World world, BlockPos pos);
+	default boolean isEnabled(BlockState state, World world, BlockPos pos)
+	{
+		return !world.isReceivingRedstonePower(pos);
+	}
 }

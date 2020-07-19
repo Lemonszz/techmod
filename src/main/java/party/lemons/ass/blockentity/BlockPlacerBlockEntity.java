@@ -1,7 +1,5 @@
 package party.lemons.ass.blockentity;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -10,7 +8,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import party.lemons.ass.blockentity.screen.BlockBreakerGuiDescription;
 import party.lemons.ass.blockentity.screen.BlockPlacerGuiDescription;
 import party.lemons.ass.blockentity.util.BlockSide;
 import party.lemons.ass.blockentity.util.InventorySource;
@@ -22,7 +19,7 @@ import party.lemons.ass.init.AssBlocks;
 
 import javax.annotation.Nullable;
 
-public class BlockPlacerBlockEntity extends AbstractMachineBlockEntity implements InventorySource
+public class BlockPlacerBlockEntity extends AbstractPoweredMachineBlockEntity implements InventorySource
 {
 	private Inventory inventory;
 

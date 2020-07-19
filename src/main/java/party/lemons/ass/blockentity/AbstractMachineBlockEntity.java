@@ -14,12 +14,9 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ArrayUtils;
 import party.lemons.ass.block.HorizontalBlock;
@@ -28,7 +25,6 @@ import party.lemons.ass.blockentity.worker.Worker;
 import party.lemons.ass.util.InventoryUtil;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 import java.util.Optional;
 
 public abstract class AbstractMachineBlockEntity extends BlockEntity implements PropertyDelegateHolder, Tickable, Inventory, SidedInventory, Upgradeable, Machine, NamedScreenHandlerFactory
@@ -93,7 +89,7 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 	public void init()
 	{
 		this.worker = createWorker();
-		if(workerTags != null)
+		if(workerTags != null && worker != null)
 			this.worker.fromTag(workerTags);
 	}
 
@@ -106,7 +102,8 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 			firstTick = false;
 		}
 
-		worker.update();
+		if(worker != null)
+			worker.update();
 	}
 
 	public abstract Worker createWorker();

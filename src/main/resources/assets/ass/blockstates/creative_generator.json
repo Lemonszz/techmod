@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ass:block/creative_generator"
+    }
+  }
+}

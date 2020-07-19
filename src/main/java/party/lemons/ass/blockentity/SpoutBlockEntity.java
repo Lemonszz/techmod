@@ -1,14 +1,8 @@
 package party.lemons.ass.blockentity;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.Hopper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
@@ -22,7 +16,6 @@ import net.minecraft.world.World;
 import party.lemons.ass.block.SpoutBlock;
 import party.lemons.ass.util.InventoryUtil;
 
-import javax.annotation.Nullable;
 import java.util.stream.IntStream;
 
 public class SpoutBlockEntity extends BlockEntity implements Tickable

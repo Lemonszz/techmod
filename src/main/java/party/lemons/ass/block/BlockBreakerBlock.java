@@ -36,10 +36,4 @@ public class BlockBreakerBlock extends HorizontalBlock implements BlockEntityPro
 		player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
 		return ActionResult.SUCCESS;
 	}
-
-	@Override
-	public boolean isEnabled(BlockState state, World world, BlockPos pos)
-	{
-		return !world.isReceivingRedstonePower(pos);
-	}
 }

@@ -2,6 +2,7 @@ package party.lemons.ass.init;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Lazy;
@@ -21,6 +22,8 @@ public class AssBlocks
 	public static final BlockPlacerBlock BLOCK_PLACER = new BlockPlacerBlock(settings(Material.METAL));
 	public static final GatedHopperBlock GATED_HOPPER = new GatedHopperBlock(settings(Material.METAL));
 	public static final ExperienceTorchBlock EXPERIENCE_TORCH = new ExperienceTorchBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().breakInstantly());
+	public static final CreativeGeneratorBlock CREATIVE_GENERATOR = new CreativeGeneratorBlock(FabricBlockSettings.of(Material.METAL).dropsNothing().strength(-1));
+	public static final FurnaceGeneratorBlock FURNACE_GENERATOR = new FurnaceGeneratorBlock(settings(Material.METAL));
 
 	public static FabricBlockSettings settings(Material material, float hardness)
 	{
