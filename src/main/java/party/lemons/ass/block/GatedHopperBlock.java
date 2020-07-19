@@ -14,6 +14,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import party.lemons.ass.block.util.RedstoneToggleable;
+import party.lemons.ass.init.AssBlocks;
 import party.lemons.ass.util.registry.BlockWithItem;
 
 public class GatedHopperBlock extends HopperBlock implements BlockWithItem, RedstoneToggleable
@@ -31,7 +32,7 @@ public class GatedHopperBlock extends HopperBlock implements BlockWithItem, Reds
 	{
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof HopperBlockEntity) {
-			((HopperBlockEntity)blockEntity).setCustomName(new TranslatableText("gui.gated_hopper"));
+			((HopperBlockEntity)blockEntity).setCustomName(new TranslatableText(AssBlocks.GATED_HOPPER.getTranslationKey()));
 		}
 		super.onPlaced(world, pos, state, placer, itemStack);
 	}

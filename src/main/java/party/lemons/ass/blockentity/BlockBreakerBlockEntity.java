@@ -15,6 +15,7 @@ import party.lemons.ass.blockentity.util.SlotIO;
 import party.lemons.ass.blockentity.worker.BlockBreakerWorker;
 import party.lemons.ass.blockentity.worker.Worker;
 import party.lemons.ass.init.AssBlockEntities;
+import party.lemons.ass.init.AssBlocks;
 
 import javax.annotation.Nullable;
 
@@ -55,7 +56,7 @@ public class BlockBreakerBlockEntity extends AbstractMachineBlockEntity implemen
 	@Override
 	public Text getDisplayName()
 	{
-		return new TranslatableText("gui.breaker");
+		return new TranslatableText(AssBlocks.BLOCK_BREAKER.getTranslationKey());
 	}
 
 	@Nullable

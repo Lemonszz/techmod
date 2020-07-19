@@ -13,9 +13,9 @@ import party.lemons.ass.util.registry.AutoReg;
 @AutoReg(registry = "block", type = Block.class)
 public class AssBlocks
 {
-	public static final FueledFurnaceBlock GILDED_FURNACE = new FueledFurnaceBlock(RecipeType.SMELTING, Util.lazy(()->AssBlockEntities.FUELED_SMELTING_FURNACE), MachineTier.IRON, settings(Material.METAL));
-	public static final FueledFurnaceBlock GILDED_SMOKER = new FueledFurnaceBlock(RecipeType.SMOKING, Util.lazy(()->AssBlockEntities.FUELED_SMOKER), MachineTier.IRON, settings(Material.METAL));
-	public static final FueledFurnaceBlock GILDED_BLAST_FURNACE = new FueledFurnaceBlock(RecipeType.BLASTING, Util.lazy(()->AssBlockEntities.FUELED_BLAST_FURNACE), MachineTier.IRON, settings(Material.METAL));
+	public static final FueledFurnaceBlock SCORCHED_FURNACE = new FueledFurnaceBlock(RecipeType.SMELTING, Util.lazy(()->AssBlockEntities.FUELED_SMELTING_FURNACE), MachineTier.IRON, settings(Material.METAL));
+	public static final FueledFurnaceBlock SCORCHED_SMOKER = new FueledFurnaceBlock(RecipeType.SMOKING, Util.lazy(()->AssBlockEntities.FUELED_SMOKER), MachineTier.IRON, settings(Material.METAL));
+	public static final FueledFurnaceBlock SCORCHED_BLAST_FURNACE = new FueledFurnaceBlock(RecipeType.BLASTING, Util.lazy(()->AssBlockEntities.FUELED_BLAST_FURNACE), MachineTier.IRON, settings(Material.METAL));
 	public static final SpoutBlock SPOUT = new SpoutBlock(settings(Material.METAL).nonOpaque());
 	public static final BlockBreakerBlock BLOCK_BREAKER = new BlockBreakerBlock(settings(Material.METAL));
 	public static final BlockPlacerBlock BLOCK_PLACER = new BlockPlacerBlock(settings(Material.METAL));

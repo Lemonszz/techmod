@@ -61,6 +61,8 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 	public SlotIO createExtractSlotIO()
 	{
 		return new SlotIO()
+				.addSide(BlockSide.TOP).slot(0).build()
+				.addSide(BlockSide.HORIZONTALS).slot(1).build()
 				.addSide(BlockSide.BOTTOM).slot(2).build();
 	}
 
@@ -73,7 +75,7 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 	@Override
 	public Text getDisplayName()
 	{
-		return new TranslatableText("gui." + getCachedState().getBlock().getTranslationKey());
+		return new TranslatableText(getCachedState().getBlock().getTranslationKey());
 	}
 
 	@Nullable

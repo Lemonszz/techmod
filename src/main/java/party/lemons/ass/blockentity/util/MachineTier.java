@@ -49,5 +49,4 @@ public class MachineTier
 	{
 		return "tier." + name;
 	}
-
 }

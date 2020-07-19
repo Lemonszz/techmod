@@ -18,6 +18,7 @@ import party.lemons.ass.blockentity.util.SlotIO;
 import party.lemons.ass.blockentity.worker.BlockPlacerWorker;
 import party.lemons.ass.blockentity.worker.Worker;
 import party.lemons.ass.init.AssBlockEntities;
+import party.lemons.ass.init.AssBlocks;
 
 import javax.annotation.Nullable;
 
@@ -56,7 +57,7 @@ public class BlockPlacerBlockEntity extends AbstractMachineBlockEntity implement
 	@Override
 	public Text getDisplayName()
 	{
-		return new TranslatableText("gui.placer");
+		return new TranslatableText(AssBlocks.BLOCK_PLACER.getTranslationKey());
 	}
 
 	@Nullable
