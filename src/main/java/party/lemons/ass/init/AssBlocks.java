@@ -24,6 +24,7 @@ public class AssBlocks
 	public static final ExperienceTorchBlock EXPERIENCE_TORCH = new ExperienceTorchBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().breakInstantly());
 	public static final CreativeGeneratorBlock CREATIVE_GENERATOR = new CreativeGeneratorBlock(FabricBlockSettings.of(Material.METAL).dropsNothing().strength(-1));
 	public static final FurnaceGeneratorBlock FURNACE_GENERATOR = new FurnaceGeneratorBlock(settings(Material.METAL));
+	public static final CableBlock CABLE = new CableBlock(settings(Material.METAL));
 
 	public static FabricBlockSettings settings(Material material, float hardness)
 	{

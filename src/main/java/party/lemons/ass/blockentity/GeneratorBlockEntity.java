@@ -28,12 +28,14 @@ public abstract class GeneratorBlockEntity extends AbstractPoweredMachineBlockEn
 	protected void transferEnergyOut()
 	{
 		List<Pair<Direction, BlockEntity>> outputs = Lists.newArrayList();
+
 		for(Direction dir : Direction.values())
 		{
 			BlockEntity be = world.getBlockEntity(pos.offset(dir));
 
 			if(be != null && Energy.valid(be))
 			{
+
 				if(Energy.of(be).side(dir.getOpposite()).getMaxInput() > 0)
 				{
 					outputs.add(Pair.of(dir, be));

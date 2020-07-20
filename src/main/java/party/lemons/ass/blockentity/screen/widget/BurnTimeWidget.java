@@ -40,7 +40,7 @@ public class BurnTimeWidget extends WWidget
 
 		if(isWithinBounds(mouseX, mouseY))
 		{
-			DrawUtil.texturedRect(x+2, y+2, 13, 13, 0, 58, 13, 71, TEX);
+			DrawUtil.texturedRect(x + 1, y+1, 15, 15, 16, 43, 31, 58, TEX);
 		}
 
 		super.paint(matrices, x, y, mouseX, mouseY);
