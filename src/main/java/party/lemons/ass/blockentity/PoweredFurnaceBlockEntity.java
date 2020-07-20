@@ -12,26 +12,29 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import party.lemons.ass.blockentity.screen.FueledFurnaceGuiDescription;
+import party.lemons.ass.blockentity.screen.PoweredFurnaceGuiDescription;
 import party.lemons.ass.blockentity.util.BlockSide;
 import party.lemons.ass.blockentity.util.InventorySource;
-import party.lemons.ass.blockentity.util.MachineTier;
 import party.lemons.ass.blockentity.util.SlotIO;
 import party.lemons.ass.blockentity.worker.FueledFurnaceWorker;
+import party.lemons.ass.blockentity.worker.FurnaceWorker;
+import party.lemons.ass.blockentity.worker.PoweredFurnaceWorker;
 import party.lemons.ass.blockentity.worker.Worker;
+import team.reborn.energy.EnergySide;
 
 import javax.annotation.Nullable;
 
-public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity implements InventorySource
+public class PoweredFurnaceBlockEntity extends AbstractPoweredMachineBlockEntity implements InventorySource
 {
 	private Inventory inventory;
 	private RecipeType<? extends AbstractCookingRecipe> recipeType;
 
-	public FueledFurnaceBlockEntity(RecipeType<? extends AbstractCookingRecipe> recipeType, BlockEntityType<?> type)
+	public PoweredFurnaceBlockEntity(RecipeType<? extends AbstractCookingRecipe> recipeType, BlockEntityType<?> type)
 	{
 		super(type);
+
 		this.recipeType = recipeType;
-		this.inventory = new SimpleInventory(3);
-		this.machineTier = MachineTier.IRON;
+		this.inventory = new SimpleInventory(2);
 	}
 
 	@Override
@@ -39,32 +42,30 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 	{
 		super.init();
 
-		propertyDelegate.addProperty(0, ()->(int) ((FueledFurnaceWorker)worker).burnTime, (v)->((FueledFurnaceWorker)worker).burnTime = v);
-		propertyDelegate.addProperty(1, ()->(int) ((FueledFurnaceWorker)worker).fuelTime, (v)->((FueledFurnaceWorker)worker).fuelTime = v);
-		propertyDelegate.addProperty(2, ()->(int) ((FueledFurnaceWorker)worker).cookTime, (v)->((FueledFurnaceWorker)worker).cookTime = v);
-		propertyDelegate.addProperty(3, ()->(int) ((FueledFurnaceWorker)worker).cookTimeTotal, (v)->((FueledFurnaceWorker)worker).cookTimeTotal = v);
+		propertyDelegate.addProperty(0, ()->(int)getStored(EnergySide.UNKNOWN), (v)->setStored(v));
+		propertyDelegate.addProperty(1, ()->(int)getMaxStoredPower(), (v)->setStored(v));
+		propertyDelegate.addProperty(2, ()->(int) ((FurnaceWorker)worker).cookTime, (v)->((FurnaceWorker)worker).cookTime = v);
+		propertyDelegate.addProperty(3, ()->(int) ((FurnaceWorker)worker).cookTimeTotal, (v)->((FurnaceWorker)worker).cookTimeTotal = v);
 	}
 
 	@Override
 	public Worker createWorker()
 	{
-		return new FueledFurnaceWorker(this, recipeType);
+		return new PoweredFurnaceWorker(this, recipeType);
 	}
 
 	@Override
 	public SlotIO createInsertSlotIO()
 	{
 		return new SlotIO()
-				.addSide(BlockSide.TOP).slot(0).build()
-				.addSide(BlockSide.HORIZONTALS).slot(1).build();
+				.addSide(BlockSide.BACK, BlockSide.FRONT, BlockSide.LEFT, BlockSide.RIGHT, BlockSide.TOP).slot(0).build();
 	}
 
 	@Override
 	public SlotIO createExtractSlotIO()
 	{
 		return new SlotIO()
-				.addSide(BlockSide.TOP).slot(0).build()
-				.addSide(BlockSide.HORIZONTALS).slot(1).build()
+				.addSide(BlockSide.BACK, BlockSide.FRONT, BlockSide.LEFT, BlockSide.RIGHT, BlockSide.TOP).slot(0).build()
 				.addSide(BlockSide.BOTTOM).slot(2).build();
 	}
 
@@ -84,6 +85,6 @@ public class FueledFurnaceBlockEntity extends AbstractMachineBlockEntity impleme
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)
 	{
-		return new FueledFurnaceGuiDescription(syncId, inv, ScreenHandlerContext.create(world, pos));
+		return new PoweredFurnaceGuiDescription(syncId, inv, ScreenHandlerContext.create(world, pos));
 	}
 }

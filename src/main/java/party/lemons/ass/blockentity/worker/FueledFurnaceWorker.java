@@ -34,7 +34,7 @@ public class FueledFurnaceWorker extends FurnaceWorker<FueledFurnaceBlockEntity>
 	}
 
 	@Override
-	protected boolean takeFuel()
+	protected void takeFuel()
 	{
 		ItemStack st = inventory.getStack(getFuelSlot());
 		this.burnTime = this.getFuelTime(st);
@@ -48,11 +48,7 @@ public class FueledFurnaceWorker extends FurnaceWorker<FueledFurnaceBlockEntity>
 					this.inventory.setStack(getFuelSlot(), item2 == null ? ItemStack.EMPTY : new ItemStack(item2));
 				}
 			}
-
-			return true;
 		}
-
-		return false;
 	}
 
 	@Override

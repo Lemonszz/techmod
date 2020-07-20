@@ -27,75 +27,9 @@ import java.util.Random;
 
 public class FueledFurnaceBlock extends AssFurnaceBlock
 {
-	private final RecipeType<? extends AbstractCookingRecipe> recipeType;
-	private final Lazy<BlockEntityType<?>> type;
-	private final MachineTier tier;
-
-	public FueledFurnaceBlock(RecipeType<? extends AbstractCookingRecipe> recipeType, Lazy<BlockEntityType<?>> type, MachineTier tier, FabricBlockSettings settings)
+	public FueledFurnaceBlock(RecipeType<? extends AbstractCookingRecipe> recipeType, Lazy<BlockEntityType<?>> type, FabricBlockSettings settings)
 	{
-		super(settings);
-
-		this.recipeType = recipeType;
-		this.type = type;
-		this.tier = tier;
-	}
-
-	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random)
-	{
-		if(!state.get(LIT))
-			return;
-
-		double x = pos.getX() + 0.5D;
-		double y = pos.getY();
-		double z = pos.getZ() + 0.5D;
-		Direction direction = state.get(FACING);
-		Direction.Axis axis = direction.getAxis();
-		SoundEvent sound = null;
-
-		if(recipeType == RecipeType.SMELTING) //Furnace
-		{
-			sound = SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE;
-			double offset = 0.52D;
-
-			for(int i = 0; i < 3; i++)
-			{
-				double altOffset = random.nextDouble() * 0.6D - 0.3D;
-				double xOffset = axis == Direction.Axis.X ? (double) direction.getOffsetX() * offset : altOffset;
-				double yOffset = random.nextDouble() * 6.0D / 16.0D;
-				double zOffset = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * offset : altOffset;
-				world.addParticle(ParticleTypes.SMOKE, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
-				world.addParticle(ParticleTypes.FLAME, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
-			}
-		}
-		else if(recipeType == RecipeType.BLASTING)
-		{
-			sound = SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE;
-			double offset = 0.52D;
-			for(int i = 0; i < 3; i++)
-			{
-				double altOffset = random.nextDouble() * 0.6D - 0.3D;
-				double xOffset = axis == Direction.Axis.X ? (double) direction.getOffsetX() * offset : altOffset;
-				double yOffset = random.nextDouble() * 6.0D / 16.0D;
-				double zOffset = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * offset : altOffset;
-				world.addParticle(ParticleTypes.SMOKE, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
-			}
-		}
-		else if(recipeType == RecipeType.SMOKING)
-		{
-			sound = SoundEvents.BLOCK_SMOKER_SMOKE;
-			for(int i = 0; i < 3; i++)
-			{
-				world.addParticle(ParticleTypes.SMOKE, x, y + 1.1D, z, 0.0D, 0.0D, 0.0D);
-				if(random.nextDouble() < 0.1D)
-					world.addParticle(ParticleTypes.FLAME, x, y + 1.1D, z, 0.0D, 0.0D, 0.0D);
-			}
-		}
-
-		if(sound != null && random.nextDouble() < 0.1D)
-		{
-			world.playSound(x, y, z, sound, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-		}
+		super(recipeType, type, settings);
 	}
 
 	@Nullable
@@ -103,7 +37,6 @@ public class FueledFurnaceBlock extends AssFurnaceBlock
 	public BlockEntity createBlockEntity(BlockView world)
 	{
 		FueledFurnaceBlockEntity be = new FueledFurnaceBlockEntity(recipeType, type.get());
-		be.upgrade(tier);
 		return be;
 	}
 }

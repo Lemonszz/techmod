@@ -111,7 +111,7 @@ public abstract class FurnaceWorker<T extends AbstractMachineBlockEntity> extend
 	 * Takes from fuel (either power or itemstack)
 	 * Set burnTime & fuelTime equal to fuel time
 	 */
-	protected abstract boolean takeFuel();
+	protected abstract void takeFuel();
 
 	@Override
 	public CompoundTag toTag()

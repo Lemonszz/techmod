@@ -13,6 +13,10 @@ public final class AssBlockEntities
 	public static final BlockEntityType<FueledFurnaceBlockEntity> FUELED_SMELTING_FURNACE = create(BlockEntityType.Builder.create(()->new FueledFurnaceBlockEntity(RecipeType.SMELTING, AssBlockEntities.FUELED_SMELTING_FURNACE), AssBlocks.SCORCHED_FURNACE));
 	public static final BlockEntityType<FueledFurnaceBlockEntity> FUELED_BLAST_FURNACE = create(BlockEntityType.Builder.create(()->new FueledFurnaceBlockEntity(RecipeType.BLASTING, AssBlockEntities.FUELED_BLAST_FURNACE), AssBlocks.SCORCHED_BLAST_FURNACE));
 	public static final BlockEntityType<FueledFurnaceBlockEntity> FUELED_SMOKER = create(BlockEntityType.Builder.create(()->new FueledFurnaceBlockEntity(RecipeType.SMOKING, AssBlockEntities.FUELED_SMOKER), AssBlocks.SCORCHED_SMOKER));
+	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_SMELTING_FURNACE = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.SMELTING, AssBlockEntities.POWERED_SMELTING_FURNACE), AssBlocks.POWERED_SCORCHED_FURNACE));
+	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_BLAST_FURNACE = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.BLASTING, AssBlockEntities.POWERED_BLAST_FURNACE), AssBlocks.POWERED_SCORCHED_BLAST_FURNACE));
+	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_SMOKER = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.SMOKING, AssBlockEntities.POWERED_SMOKER), AssBlocks.POWERED_SCORCHED_SMOKER));
+
 	public static final BlockEntityType<SpoutBlockEntity> SPOUT = create(BlockEntityType.Builder.create(()->new SpoutBlockEntity(AssBlockEntities.SPOUT), AssBlocks.SPOUT));
 	public static final BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER = create(BlockEntityType.Builder.create(BlockBreakerBlockEntity::new, AssBlocks.BLOCK_BREAKER));
 	public static final BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER = create(BlockEntityType.Builder.create(BlockPlacerBlockEntity::new, AssBlocks.BLOCK_PLACER));
