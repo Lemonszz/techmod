@@ -28,6 +28,7 @@ public class AssBlocks
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_FURNACE = new PoweredFurnaceBlock(RecipeType.SMELTING, Util.lazy(()->AssBlockEntities.POWERED_SMELTING_FURNACE), settings(Material.METAL));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_SMOKER = new PoweredFurnaceBlock(RecipeType.SMOKING, Util.lazy(()->AssBlockEntities.POWERED_SMOKER), settings(Material.METAL));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_BLAST_FURNACE = new PoweredFurnaceBlock(RecipeType.BLASTING, Util.lazy(()->AssBlockEntities.POWERED_BLAST_FURNACE), settings(Material.METAL));
+	public static final EnderMagnetBlock ENDER_MAGNET = new EnderMagnetBlock(settings(Material.METAL));
 
 	public static FabricBlockSettings settings(Material material, float hardness)
 	{

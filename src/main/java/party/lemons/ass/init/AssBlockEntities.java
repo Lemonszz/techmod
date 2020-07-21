@@ -16,7 +16,6 @@ public final class AssBlockEntities
 	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_SMELTING_FURNACE = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.SMELTING, AssBlockEntities.POWERED_SMELTING_FURNACE), AssBlocks.POWERED_SCORCHED_FURNACE));
 	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_BLAST_FURNACE = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.BLASTING, AssBlockEntities.POWERED_BLAST_FURNACE), AssBlocks.POWERED_SCORCHED_BLAST_FURNACE));
 	public static final BlockEntityType<PoweredFurnaceBlockEntity> POWERED_SMOKER = create(BlockEntityType.Builder.create(()->new PoweredFurnaceBlockEntity(RecipeType.SMOKING, AssBlockEntities.POWERED_SMOKER), AssBlocks.POWERED_SCORCHED_SMOKER));
-
 	public static final BlockEntityType<SpoutBlockEntity> SPOUT = create(BlockEntityType.Builder.create(()->new SpoutBlockEntity(AssBlockEntities.SPOUT), AssBlocks.SPOUT));
 	public static final BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER = create(BlockEntityType.Builder.create(BlockBreakerBlockEntity::new, AssBlocks.BLOCK_BREAKER));
 	public static final BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER = create(BlockEntityType.Builder.create(BlockPlacerBlockEntity::new, AssBlocks.BLOCK_PLACER));
@@ -24,6 +23,7 @@ public final class AssBlockEntities
 	public static final BlockEntityType<CreativeGeneratorBlockEntity> CREATIVE_GENERATOR = create(BlockEntityType.Builder.create(CreativeGeneratorBlockEntity::new, AssBlocks.CREATIVE_GENERATOR));
 	public static final BlockEntityType<FurnaceGeneratorBlockEntity> FURNACE_GENERATOR = create(BlockEntityType.Builder.create(FurnaceGeneratorBlockEntity::new, AssBlocks.FURNACE_GENERATOR));
 	public static final BlockEntityType<CableBlockEntity> CABLE = create(BlockEntityType.Builder.create(CableBlockEntity::new, AssBlocks.CABLE));
+	public static final BlockEntityType<EnderMagnetBlockEntity> ENDER_MAGNET = create(BlockEntityType.Builder.create(EnderMagnetBlockEntity::new, AssBlocks.ENDER_MAGNET));
 
 	static {
 		((BlockEntityTypeAccess)BlockEntityType.HOPPER).addSupportedBlock(AssBlocks.GATED_HOPPER);
