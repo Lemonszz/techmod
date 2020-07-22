@@ -8,6 +8,7 @@
     "block.ass.gated_hopper": "Gated Hopper",
     "block.ass.furnace_generator": "Furnace Generator",
     "block.ass.creative_generator": "Creative Generator",
+    "block.ass.ender_magnet": "Ender Magnet",
 
 
     "info.burn.seconds": "%d Seconds",

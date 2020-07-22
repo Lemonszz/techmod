@@ -32,6 +32,7 @@ public class AssClient implements ClientModInitializer
 		register(AssScreens.BLOCK_PLACER);
 		register(AssScreens.FURNACE_GENERATOR);
 		register(AssScreens.POWERED_FURNACE);
+		register(AssScreens.POWER_DISPLAY);
 
 		//TODO: move this
 		ClientSidePacketRegistry.INSTANCE.register(AssNetwork.SPAWN_ENTITY_CUSTOM, new S2C_SpawnEntityCustom());
@@ -42,6 +43,6 @@ public class AssClient implements ClientModInitializer
 
 	public static <H extends SyncedGuiDescription> void register(ScreenHandlerType<? extends H> type)
 	{
-		ScreenRegistry.register(type, (ScreenRegistry.Factory<H, CottonInventoryScreen<H>>) (h, playerInventory, text)->new GenericMachineScreen<H>(h, playerInventory.player, text));
+		ScreenRegistry.register(type, (ScreenRegistry.Factory<H, CottonInventoryScreen<H>>) (h, playerInventory, text)->new GenericMachineScreen<>(h, playerInventory.player, text));
 	}
 }

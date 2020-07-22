@@ -9,9 +9,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Pair;
 import party.lemons.ass.block.DirectionalBlock;
+import party.lemons.ass.block.util.RedstoneToggleable;
 import party.lemons.ass.blockentity.EnderMagnetBlockEntity;
 import party.lemons.ass.entity.FlyingBlockEntity;
+import team.reborn.energy.Energy;
+import team.reborn.energy.EnergySide;
 
 public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 {
@@ -19,7 +23,6 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 	private final BlockPos finalPos;
 	private final Direction facing;
 	private int workTime;
-
 
 	public EnderMagnetWorker(EnderMagnetBlockEntity machine)
 	{
@@ -35,15 +38,26 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 		if(machine.getWorld().isClient())
 			return;
 
+		if(!((RedstoneToggleable)machine.getCachedState().getBlock()).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos()))
+			return;
+
 		workTime--;
 		if(workTime <= 0)
 		{
 			workTime = 100;
 			if(machine.getWorld().getBlockState(finalPos).isAir())
 			{
-				BlockPos targetPos = getTargetPos();
-				if(targetPos == null)
+				Pair<Integer, BlockPos> info = getTargetInfo();
+				if(info == null)
 					return;
+
+				BlockPos targetPos = info.getRight();
+
+				int power = info.getLeft() * 1000;
+				if(machine.getStored(EnergySide.UNKNOWN) < power)
+					return;
+
+				Energy.of(machine).extract(power);
 
 				BlockState state = machine.getWorld().getBlockState(targetPos);
 				if(state.getBlock().getPistonBehavior(state) == PistonBehavior.DESTROY)
@@ -62,7 +76,7 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 		}
 	}
 
-	public BlockPos getTargetPos()
+	public Pair<Integer, BlockPos> getTargetInfo()
 	{
 		BlockPos.Mutable pos = new BlockPos.Mutable(finalPos.getX(), finalPos.getY(), finalPos.getZ());
 		for(int i = 1; i < range; i++)
@@ -78,7 +92,7 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 			if(!state.canPlaceAt(machine.getWorld(), finalPos))
 				return null;
 
-			return pos;
+			return Pair.of(i, pos);
 		}
 		return null;
 	}
