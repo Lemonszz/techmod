@@ -22,14 +22,12 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 	private static final int range = 12;
 	private final BlockPos finalPos;
 	private final Direction facing;
-	private int workTime;
 
 	public EnderMagnetWorker(EnderMagnetBlockEntity machine)
 	{
 		super(machine);
 		this.facing = machine.getCachedState().get(DirectionalBlock.FACING);
 		this.finalPos = machine.getPos().offset(facing);
-		this.workTime = 100;
 	}
 
 	@Override
@@ -41,10 +39,8 @@ public class EnderMagnetWorker extends Worker<EnderMagnetBlockEntity>
 		if(!((RedstoneToggleable)machine.getCachedState().getBlock()).isEnabled(machine.getCachedState(), machine.getWorld(), machine.getPos()))
 			return;
 
-		workTime--;
-		if(workTime <= 0)
+		if(machine.getWorld().getTime() % 100 == 0)
 		{
-			workTime = 100;
 			if(machine.getWorld().getBlockState(finalPos).isAir())
 			{
 				Pair<Integer, BlockPos> info = getTargetInfo();
