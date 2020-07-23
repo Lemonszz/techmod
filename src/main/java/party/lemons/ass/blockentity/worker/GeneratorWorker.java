@@ -24,8 +24,6 @@ public abstract class GeneratorWorker<T extends AbstractMachineBlockEntity & Ene
 				machine.setStored(machine.getStored(EnergySide.UNKNOWN) + getGeneratedPower());
 			else
 				machine.setStored(machine.getMaxStoredPower());
-
-		//	Energy.of(machine).insert(getGeneratedPower());
 		}
 	}
 

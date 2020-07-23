@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import net.minecraft.util.Lazy;
 import party.lemons.ass.block.*;
 import party.lemons.ass.blockentity.util.MachineTier;
@@ -29,6 +30,7 @@ public class AssBlocks
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_SMOKER = new PoweredFurnaceBlock(RecipeType.SMOKING, Util.lazy(()->AssBlockEntities.POWERED_SMOKER), settings(Material.METAL));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_BLAST_FURNACE = new PoweredFurnaceBlock(RecipeType.BLASTING, Util.lazy(()->AssBlockEntities.POWERED_BLAST_FURNACE), settings(Material.METAL));
 	public static final EnderMagnetBlock ENDER_MAGNET = new EnderMagnetBlock(settings(Material.METAL));
+	public static final BubbleGeneratorBlock BUBBLE_GENERATOR = new BubbleGeneratorBlock(settings(Material.METAL));
 
 	public static FabricBlockSettings settings(Material material, float hardness)
 	{

@@ -46,12 +46,6 @@ public class CreativeGeneratorBlockEntity extends GeneratorBlockEntity
 		return new SlotIO();
 	}
 
-	@Override
-	public Text getDisplayName()
-	{
-		return new TranslatableText(AssBlocks.CREATIVE_GENERATOR.getTranslationKey());
-	}
-
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)

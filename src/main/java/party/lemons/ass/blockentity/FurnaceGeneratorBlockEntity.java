@@ -51,12 +51,6 @@ public class FurnaceGeneratorBlockEntity extends GeneratorBlockEntity implements
 		return new SlotIO().addSide(BlockSide.values()).slot(0).build();
 	}
 
-	@Override
-	public Text getDisplayName()
-	{
-		return new TranslatableText(AssBlocks.FURNACE_GENERATOR.getTranslationKey());
-	}
-
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)

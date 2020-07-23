@@ -51,12 +51,6 @@ public class BlockPlacerBlockEntity extends AbstractPoweredMachineBlockEntity im
 					.range(0, 8).build();
 	}
 
-	@Override
-	public Text getDisplayName()
-	{
-		return new TranslatableText(AssBlocks.BLOCK_PLACER.getTranslationKey());
-	}
-
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)

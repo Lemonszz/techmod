@@ -75,12 +75,6 @@ public class PoweredFurnaceBlockEntity extends AbstractPoweredMachineBlockEntity
 		return inventory;
 	}
 
-	@Override
-	public Text getDisplayName()
-	{
-		return new TranslatableText(getCachedState().getBlock().getTranslationKey());
-	}
-
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)

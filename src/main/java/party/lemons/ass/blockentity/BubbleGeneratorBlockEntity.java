@@ -6,36 +6,26 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import party.lemons.ass.blockentity.screen.BlockBreakerGuiDescription;
 import party.lemons.ass.blockentity.screen.PowerOnlyGuiDescription;
-import party.lemons.ass.blockentity.util.MachineTier;
 import party.lemons.ass.blockentity.util.SlotIO;
-import party.lemons.ass.blockentity.worker.EnderMagnetWorker;
+import party.lemons.ass.blockentity.worker.BubbleGeneratorWorker;
 import party.lemons.ass.blockentity.worker.Worker;
 import party.lemons.ass.init.AssBlockEntities;
 import party.lemons.ass.init.AssBlocks;
 
 import javax.annotation.Nullable;
 
-
-public class EnderMagnetBlockEntity extends AbstractPoweredMachineBlockEntity
+public class BubbleGeneratorBlockEntity extends GeneratorBlockEntity
 {
-	public EnderMagnetBlockEntity()
+	public BubbleGeneratorBlockEntity()
 	{
-		super(AssBlockEntities.ENDER_MAGNET);
-	}
-
-	@Override
-	public void init()
-	{
-		super.init();
-		machineTier = MachineTier.DIAMOND;
+		super(AssBlockEntities.BUBBLE_GENERATOR);
 	}
 
 	@Override
 	public Worker createWorker()
 	{
-		return new EnderMagnetWorker(this);
+		return new BubbleGeneratorWorker(this);
 	}
 
 	@Override

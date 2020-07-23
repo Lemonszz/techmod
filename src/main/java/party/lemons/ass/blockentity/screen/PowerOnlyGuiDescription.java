@@ -16,10 +16,10 @@ public class PowerOnlyGuiDescription extends SyncedGuiDescription
 
 		WGridPanel root = new WGridPanel();
 		setRootPanel(root);
-		root.setSize(0, 0);
+		root.setSize(70, 0);
 		HorizontalEnergyBarWidget bar = new HorizontalEnergyBarWidget(()->getPropertyDelegate().get(1), ()->getPropertyDelegate().get(0));
 		root.add(bar, 0, 1);
-		bar.setLocation(bar.getX() + 4, bar.getY());
+		bar.setLocation(bar.getX() + 8, bar.getY());
 
 		root.validate(this);
 	}

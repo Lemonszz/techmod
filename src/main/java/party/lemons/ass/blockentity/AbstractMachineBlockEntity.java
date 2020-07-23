@@ -16,12 +16,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ArrayUtils;
 import party.lemons.ass.block.HorizontalBlock;
 import party.lemons.ass.blockentity.util.*;
 import party.lemons.ass.blockentity.worker.Worker;
+import party.lemons.ass.init.AssBlocks;
 import party.lemons.ass.util.InventoryUtil;
 
 import javax.annotation.Nullable;
@@ -259,5 +262,11 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity implements 
 	public PropertyDelegate getPropertyDelegate()
 	{
 		return propertyDelegate;
+	}
+
+	@Override
+	public Text getDisplayName()
+	{
+		return new TranslatableText(getCachedState().getBlock().getTranslationKey());
 	}
 }

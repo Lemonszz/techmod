@@ -24,6 +24,7 @@ public final class AssBlockEntities
 	public static final BlockEntityType<FurnaceGeneratorBlockEntity> FURNACE_GENERATOR = create(BlockEntityType.Builder.create(FurnaceGeneratorBlockEntity::new, AssBlocks.FURNACE_GENERATOR));
 	public static final BlockEntityType<CableBlockEntity> CABLE = create(BlockEntityType.Builder.create(CableBlockEntity::new, AssBlocks.CABLE));
 	public static final BlockEntityType<EnderMagnetBlockEntity> ENDER_MAGNET = create(BlockEntityType.Builder.create(EnderMagnetBlockEntity::new, AssBlocks.ENDER_MAGNET));
+	public static final BlockEntityType<BubbleGeneratorBlockEntity> BUBBLE_GENERATOR = create(BlockEntityType.Builder.create(BubbleGeneratorBlockEntity::new, AssBlocks.BUBBLE_GENERATOR));
 
 	static {
 		((BlockEntityTypeAccess)BlockEntityType.HOPPER).addSupportedBlock(AssBlocks.GATED_HOPPER);
