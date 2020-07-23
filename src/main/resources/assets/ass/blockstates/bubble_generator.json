@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "enabled=false": {
+      "model": "ass:block/bubble_generator"
+    },
+    "enabled=true": {
+      "model": "ass:block/bubble_generator_on"
+    }
+  }
+}

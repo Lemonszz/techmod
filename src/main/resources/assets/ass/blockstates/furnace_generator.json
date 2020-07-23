@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ass:block/furnace_generator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ass:block/furnace_generator"
+    },
+    "facing=south": {
+      "model": "ass:block/furnace_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ass:block/furnace_generator",
+      "y": 270
+    }
+  }
+}

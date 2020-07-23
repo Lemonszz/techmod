@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "ass:block/scorched_top",
+    "front": "ass:block/scorched_blast_furnace_front",
+    "side": "ass:block/scorched_furnace_side"
+  }
+}

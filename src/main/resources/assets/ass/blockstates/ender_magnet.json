@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ass:block/ender_magnet",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ass:block/ender_magnet"
+    },
+    "facing=south": {
+      "model": "ass:block/ender_magnet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ass:block/ender_magnet",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "ass:block/ender_magnet",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "ass:block/ender_magnet",
+      "x": 90
+    }
+  }
+}

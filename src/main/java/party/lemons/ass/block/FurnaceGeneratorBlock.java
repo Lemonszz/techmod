@@ -19,13 +19,13 @@ import party.lemons.ass.blockentity.FurnaceGeneratorBlockEntity;
 
 import javax.annotation.Nullable;
 
-public class FurnaceGeneratorBlock extends DirectionalBlock implements BlockEntityProvider, RedstoneToggleable
+public class FurnaceGeneratorBlock extends HorizontalBlock implements BlockEntityProvider, RedstoneToggleable
 {
 	public static final BooleanProperty LIT = AbstractFurnaceBlock.LIT;
 
 	public FurnaceGeneratorBlock(Settings settings)
 	{
-		super(settings, PlacementMode.PLAYER_FACE_OPPOSITE);
+		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(LIT, false));
 
 	}
