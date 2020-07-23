@@ -9,7 +9,11 @@
     "block.ass.furnace_generator": "Furnace Generator",
     "block.ass.creative_generator": "Creative Generator",
     "block.ass.ender_magnet": "Ender Magnet",
-
+    "block.ass.cable": "Cable",
+    "block.ass.powered_scorched_furnace": "Powered Scorched Furnace",
+    "block.ass.powered_scorched_smoker": "Powered Scorched Smoker",
+    "block.ass.powered_scorched_blast_furnace": "Powered Scorched Blast Furnace",
+    "block.ass.bubble_generator": "Bubble Generator",
 
     "info.burn.seconds": "%d Seconds",
     "info.progress.percent": "%d%%"

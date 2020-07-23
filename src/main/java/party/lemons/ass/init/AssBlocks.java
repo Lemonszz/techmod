@@ -25,7 +25,7 @@ public class AssBlocks
 	public static final ExperienceTorchBlock EXPERIENCE_TORCH = new ExperienceTorchBlock(settings(Material.METAL, 1.5F).noCollision());
 	public static final CreativeGeneratorBlock CREATIVE_GENERATOR = new CreativeGeneratorBlock(FabricBlockSettings.of(Material.METAL).dropsNothing().strength(-1));
 	public static final FurnaceGeneratorBlock FURNACE_GENERATOR = new FurnaceGeneratorBlock(settings(Material.STONE));
-	public static final CableBlock CABLE = new CableBlock(settings(Material.PISTON, 1.0F));
+	public static final CableBlock CABLE = new CableBlock(settings(Material.PISTON, 0.5F));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_FURNACE = new PoweredFurnaceBlock(RecipeType.SMELTING, Util.lazy(()->AssBlockEntities.POWERED_SMELTING_FURNACE), settings(Material.STONE));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_SMOKER = new PoweredFurnaceBlock(RecipeType.SMOKING, Util.lazy(()->AssBlockEntities.POWERED_SMOKER), settings(Material.STONE));
 	public static final PoweredFurnaceBlock POWERED_SCORCHED_BLAST_FURNACE = new PoweredFurnaceBlock(RecipeType.BLASTING, Util.lazy(()->AssBlockEntities.POWERED_BLAST_FURNACE), settings(Material.STONE));
